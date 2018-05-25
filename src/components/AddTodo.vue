@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <input type="text" v-model="todoText" @keyup.enter="onTodoEntered">
-    <ul>
-      <li v-for="(todo, index) in todos" :key="todo.id">
-      <span>
-        {{index + 1}}. {{todo.text}}
-      </span>
-      </li>
-    </ul>
-  </div>
+  <input
+    class="todo-input"
+    type="text"
+    v-model="todoText"
+    @keyup.enter="onTodoEntered">
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'AddTodo',
@@ -31,12 +26,7 @@
       }
     },
     computed: {
-      ...mapState([
-        'todos'
-      ])
     }
   }
 </script>
 
-<style scoped lang="scss">
-</style>

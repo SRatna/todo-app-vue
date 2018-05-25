@@ -12,6 +12,18 @@ const actions = {
       text
     })
   },
+  toggleTodo ({ commit }, id) {
+    commit({
+      type: 'toggleTodo',
+      id
+    })
+  },
+  removeTodo ({ commit }, id) {
+    commit({
+      type: 'removeTodo',
+      id
+    })
+  },
 };
 const mutations = {
   addTodo (state, { id, text }) {
@@ -20,7 +32,21 @@ const mutations = {
       text,
       completed: false
     })
-  }
+  },
+  toggleTodo (state, { id }) {
+    const index = state.findIndex(todo => todo.id === id);
+    if(index > -1) {
+      const todo = state[index];
+      state.splice(index, 1, { ...todo, completed: !todo.completed });
+    }
+  },
+  removeTodo (state, { id }) {
+    const index = state.findIndex(todo => todo.id === id);
+    if(index > -1) {
+      const todo = state[index];
+      state.splice(index, 1);
+    }
+  },
 };
 export default {
   state,

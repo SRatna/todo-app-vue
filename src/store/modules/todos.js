@@ -43,7 +43,6 @@ const mutations = {
   removeTodo (state, { id }) {
     const index = state.findIndex(todo => todo.id === id);
     if(index > -1) {
-      const todo = state[index];
       state.splice(index, 1);
     }
   },

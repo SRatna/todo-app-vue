@@ -21,8 +21,10 @@
         'addTodo'
       ]),
       onTodoEntered: function () {
-        this.addTodo(this.todoText);
-        this.todoText = '';
+        if (this.todoText !== '') {
+          this.addTodo(this.todoText);
+          this.todoText = '';
+        }
       }
     },
     computed: {

@@ -1,5 +1,6 @@
 <template>
   <input
+    autofocus
     class="todo-input"
     type="text"
     v-model="todoText"

@@ -3,7 +3,9 @@
  */
 import shortid from 'shortid'
 
-const state = [];
+const state = {
+  items: []
+};
 const actions = {
   addTodo ({ commit }, text) {
     commit({
@@ -24,31 +26,65 @@ const actions = {
       id
     })
   },
+  removeDoneTodos ({ commit }) {
+    commit({
+      type: 'removeDoneTodos'
+    })
+  },
+  editTodo ({ commit }, { id, text }) {
+    commit({
+      type: 'editTodo',
+      id,
+      text
+    })
+  },
 };
 const mutations = {
   addTodo (state, { id, text }) {
-    state.push({
+    state.items.push({
       id,
       text,
       completed: false
     })
   },
-  toggleTodo (state, { id }) {
-    const index = state.findIndex(todo => todo.id === id);
+  editTodo (state, { id, text }) {
+    const index = state.items.findIndex(todo => todo.id === id);
     if(index > -1) {
-      const todo = state[index];
-      state.splice(index, 1, { ...todo, completed: !todo.completed });
+      const todo = state.items[index];
+      state.items.splice(index, 1, { ...todo, text });
+    }
+  },
+  toggleTodo (state, { id }) {
+    const index = state.items.findIndex(todo => todo.id === id);
+    if(index > -1) {
+      const todo = state.items[index];
+      state.items.splice(index, 1, { ...todo, completed: !todo.completed });
     }
   },
   removeTodo (state, { id }) {
-    const index = state.findIndex(todo => todo.id === id);
+    const index = state.items.findIndex(todo => todo.id === id);
     if(index > -1) {
-      state.splice(index, 1);
+      state.items.splice(index, 1);
     }
+  },
+  removeDoneTodos (state) {
+    state.items = state.items.filter(todo => todo.completed === false)
+  },
+};
+const getters = {
+  doneTodosCount (state) {
+    return state.items.reduce((n, todo) => n + (todo.completed === true), 0);
+  },
+  leftTodosCount (state) {
+    return state.items.reduce((n, todo) => n + (todo.completed === false), 0);
+  },
+  totalTodosCount (state) {
+    return state.items.length;
   },
 };
 export default {
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }

@@ -1,17 +1,17 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
-    background-color: wheat;
+    background-color: white;
+    height: 100%;
 }
 .container {
-    width: 70%;
+    width: 60%;
     margin: auto;
     text-align: center;
-    background-color: antiquewhite;
-    min-height: 80vh;
-    border: 1px solid gray;
-    box-shadow: 5px 10px rgb(136, 136, 136);
-    border-radius: 10px;
+    background-color: white;
+    height: calc(100% - 120px);
+    border: 1px solid #a9a9a9;
+    box-shadow: 2px 3px 2px 2px rgb(177, 177, 177);
     padding-bottom: 100px;
 }
 .title {
@@ -21,24 +21,23 @@ body {
     margin: 20px;
 }
 .todo-input {
-    width: 70%;
+    width: 60%;
     font-size: 2em;
     padding: 10px;
 }
 .todo-input-edit {
-    margin-left: 40px;
-    width: 85%;
+    margin-left: 3px;
+    width: 92%;
     font-size: 0.7em;
     padding: 10px;
 }
 .todo-task {
-    width: 70%;
+    width: 60%;
     text-align: left;
     margin: auto;
     font-size: 2em;
     background-color: white;
     border: 1px solid gray;
-    border-radius: 3px;
     padding: 10px;
     position: relative;
 }
@@ -58,24 +57,26 @@ body {
     text-decoration: line-through;
 }
 .todo-tasks-status {
-    width: 70%;
-    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
     margin: auto;
     background-color: white;
     border: 1px solid gray;
-    border-radius: 3px;
     padding: 10px;
     position: relative;
 }
-.tasks-status-btns {
-    display: inline;
-    position: absolute;
-    left: 160px;
+button {
+    outline: none;
+    border: 1px solid #bfbfbf;
+    background: white;
+    cursor: pointer;
 }
 .task-clear-btn {
-    position: absolute;
-    right: 10px;
 }
 button.active {
-    background: cyan;
+    background: #c7c7c7;
+}
+.tasks-status-btns {
+    flex: 1;
 }

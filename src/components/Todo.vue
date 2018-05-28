@@ -6,6 +6,7 @@
       class="todo-checkbox"> &nbsp;
     <span
       class="todo-text"
+      @dblclick="setBeingEditedTodo(todo.id)"
       :class="{ 'todo-task-done': todo.completed }">
         {{todo.text}}
     </span>
@@ -33,6 +34,7 @@
       ...mapActions([
         'toggleTodo',
         'removeTodo',
+        'setBeingEditedTodo',
       ])
     },
     computed: {
